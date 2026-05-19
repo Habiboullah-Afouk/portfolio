@@ -20,14 +20,14 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  title: "Habib — Systems Engineer · Infrastructure & Design",
+  title: "Habiboullah Afouk — Full-Stack Software Developer",
   description:
-    "Editorial portfolio of Habib — Arch Linux power user, Hyprland aesthete, infrastructure engineer building cinematic systems for premium teams.",
+    "Portfolio of Habiboullah Afouk — Full-Stack Software Developer from Laayoune, Morocco. Building modern web, desktop, and mobile applications with React, Laravel, Node.js, Electron, and more.",
   metadataBase: new URL("https://habib.dev"),
   openGraph: {
-    title: "Habib · Systems Engineer",
+    title: "Habiboullah Afouk · Full-Stack Software Developer",
     description:
-      "Cinematic operating-system portfolio. Arch + Hyprland · terminal-native workflow · infrastructure that ships.",
+      "Cinematic, terminal-inspired developer portfolio. Full-stack across web, mobile, and desktop · Linux-native workflow · open for collaboration.",
     type: "website",
   },
 };

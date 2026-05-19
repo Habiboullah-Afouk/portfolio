@@ -100,7 +100,7 @@ export function Capabilities() {
 
   return (
     <section
-      id="capabilities"
+      id="stack"
       ref={ref}
       className="relative py-[var(--shell-pad-y)] border-b border-border"
     >

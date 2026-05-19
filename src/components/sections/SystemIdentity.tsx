@@ -4,39 +4,11 @@ import { useRef } from "react";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { SYSTEM_ID } from "@/lib/content";
 
 if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
 }
-
-/* ── data ────────────────────────────────────────────────── */
-
-const BOOT_LOG = [
-  { status: "ok", text: "mounted /home/habib" },
-  { status: "ok", text: "started Hyprland compositor" },
-  { status: "ok", text: "loaded zsh configuration" },
-  { status: "ok", text: "initialized starship prompt" },
-  { status: "ok", text: "connected to remote infrastructure" },
-];
-
-const SPECS = [
-  { label: "name", value: "Habiboullah Afouk", color: "accent" as const },
-  { label: "role", value: "Systems Engineer / Creative Developer", color: "text" as const },
-  { label: "uptime", value: "2 years building digital systems", color: "muted" as const },
-  { label: "os", value: "Arch Linux x86_64", color: "muted" as const },
-  { label: "wm", value: "Hyprland 0.45.2", color: "muted" as const },
-  { label: "shell", value: "zsh + starship", color: "muted" as const },
-  { label: "editor", value: "neovim · helix", color: "muted" as const },
-  { label: "workflow", value: "terminal-native", color: "term-green" as const },
-  { label: "focus", value: "infrastructure engineering", color: "term-amber" as const },
-];
-
-const TAGS = [
-  "Arch Linux",
-  "Hyprland 0.45",
-  "terminal-native",
-  "infrastructure",
-];
 
 /* ── color helper ────────────────────────────────────────── */
 
@@ -70,19 +42,18 @@ export function SystemIdentity() {
   const specsRef = useRef<HTMLDivElement>(null);
   const statusRef = useRef<HTMLDivElement>(null);
   const decorRef = useRef<HTMLDivElement>(null);
+  const glowRef = useRef<HTMLDivElement>(null);
 
-  const firstName = "Habiboullah";
-  const lastName = "Afouk";
-  const roleText = "Systems Engineer / Creative Developer";
+  const { firstName, lastName, role: roleText, lede, bootLog, specs, tags } = SYSTEM_ID;
 
   useGSAP(
     () => {
-      const ctx = gsap.context(() => {
+      gsap.context(() => {
         const tl = gsap.timeline({
           defaults: { ease: "power3.out" },
           scrollTrigger: {
             trigger: sectionRef.current,
-            start: "top 80%",
+            start: "top 75%",
             toggleActions: "play none none none",
           },
         });
@@ -198,7 +169,7 @@ export function SystemIdentity() {
           tl.fromTo(
             specRows,
             { opacity: 0, x: -6 },
-            { opacity: 1, x: 0, stagger: 0.07, duration: 0.4, ease: "power2.out" },
+            { opacity: 1, x: 0, stagger: 0.06, duration: 0.4, ease: "power2.out" },
             1.5
           );
         }
@@ -210,6 +181,18 @@ export function SystemIdentity() {
           { opacity: 1, y: 0, stagger: 0.06, duration: 0.5 },
           2.1
         );
+
+        /* 12. Subtle ambient glow breathing — runs continuously */
+        if (glowRef.current) {
+          gsap.to(glowRef.current, {
+            opacity: 0.85,
+            scale: 1.05,
+            duration: 4,
+            ease: "sine.inOut",
+            yoyo: true,
+            repeat: -1,
+          });
+        }
       }, sectionRef);
     },
     { scope: sectionRef }
@@ -228,8 +211,9 @@ export function SystemIdentity() {
         aria-hidden="true"
       />
 
-      {/* Cyan volumetric glow — left-center */}
+      {/* Cyan volumetric glow — left-center (animated breathing) */}
       <div
+        ref={glowRef}
         className="absolute top-1/2 left-[10%] -translate-y-1/2 w-[65vw] h-[65vw] rounded-full blur-[150px]"
         style={{
           background:
@@ -255,69 +239,13 @@ export function SystemIdentity() {
         aria-hidden="true"
       >
         <svg viewBox="0 0 100 100" fill="none" className="w-full h-full">
-          <rect
-            x="10"
-            y="10"
-            width="80"
-            height="80"
-            stroke="#7dd3fc"
-            strokeWidth="0.4"
-            opacity="0.25"
-          />
-          <rect
-            x="22"
-            y="22"
-            width="56"
-            height="56"
-            stroke="#7dd3fc"
-            strokeWidth="0.4"
-            opacity="0.35"
-          />
-          <rect
-            x="34"
-            y="34"
-            width="32"
-            height="32"
-            stroke="#7dd3fc"
-            strokeWidth="0.4"
-            opacity="0.5"
-          />
-          <line
-            x1="10"
-            y1="10"
-            x2="22"
-            y2="22"
-            stroke="#7dd3fc"
-            strokeWidth="0.25"
-            opacity="0.3"
-          />
-          <line
-            x1="90"
-            y1="10"
-            x2="78"
-            y2="22"
-            stroke="#7dd3fc"
-            strokeWidth="0.25"
-            opacity="0.3"
-          />
-          <line
-            x1="90"
-            y1="90"
-            x2="78"
-            y2="78"
-            stroke="#7dd3fc"
-            strokeWidth="0.25"
-            opacity="0.3"
-          />
-          <line
-            x1="10"
-            y1="90"
-            x2="22"
-            y2="78"
-            stroke="#7dd3fc"
-            strokeWidth="0.25"
-            opacity="0.3"
-          />
+          <rect x="10" y="10" width="80" height="80" stroke="#7dd3fc" strokeWidth="0.4" opacity="0.25" />
+          <rect x="22" y="22" width="56" height="56" stroke="#7dd3fc" strokeWidth="0.4" opacity="0.35" />
+          <rect x="34" y="34" width="32" height="32" stroke="#7dd3fc" strokeWidth="0.4" opacity="0.5" />
+          <line x1="10" y1="10" x2="22" y2="22" stroke="#7dd3fc" strokeWidth="0.25" opacity="0.3" />
+          <line x1="90" y1="10" x2="78" y2="22" stroke="#7dd3fc" strokeWidth="0.25" opacity="0.3" />
+          <line x1="90" y1="90" x2="78" y2="78" stroke="#7dd3fc" strokeWidth="0.25" opacity="0.3" />
+          <line x1="10" y1="90" x2="22" y2="78" stroke="#7dd3fc" strokeWidth="0.25" opacity="0.3" />
         </svg>
       </div>
 
@@ -331,7 +259,7 @@ export function SystemIdentity() {
       <div className="shell relative z-10">
         {/* Chapter label */}
         <div className="flex items-center gap-4 mb-10 md:mb-14">
-          <span className="t-label">FIG 0.0 · System Identity</span>
+          <span className="t-label">{SYSTEM_ID.fig}</span>
           <span className="h-px flex-1 max-w-[100px] bg-border-strong" />
         </div>
 
@@ -357,10 +285,7 @@ export function SystemIdentity() {
                       key={i}
                       data-char
                       className="inline-block"
-                      style={{
-                        opacity: 0,
-                        transformStyle: "preserve-3d",
-                      }}
+                      style={{ opacity: 0, transformStyle: "preserve-3d" }}
                     >
                       {ch}
                     </span>
@@ -381,10 +306,7 @@ export function SystemIdentity() {
                       key={i}
                       data-char
                       className="inline-block"
-                      style={{
-                        opacity: 0,
-                        transformStyle: "preserve-3d",
-                      }}
+                      style={{ opacity: 0, transformStyle: "preserve-3d" }}
                     >
                       {ch}
                     </span>
@@ -409,9 +331,7 @@ export function SystemIdentity() {
               className="t-lede max-w-lg"
               style={{ opacity: 0 }}
             >
-              Two years building digital systems. Infrastructure that ships
-              quietly. Workstations tuned like instruments. A terminal-native
-              workflow for infrastructure-focused engineering.
+              {lede}
             </p>
           </div>
 
@@ -425,18 +345,9 @@ export function SystemIdentity() {
               {/* Terminal chrome */}
               <div className="win-header">
                 <span className="dot-row">
-                  <span
-                    className="dot"
-                    style={{ background: "#ff6b6b" }}
-                  />
-                  <span
-                    className="dot"
-                    style={{ background: "#f7a13c" }}
-                  />
-                  <span
-                    className="dot"
-                    style={{ background: "#7ee787" }}
-                  />
+                  <span className="dot" style={{ background: "#ff6b6b" }} />
+                  <span className="dot" style={{ background: "#f7a13c" }} />
+                  <span className="dot" style={{ background: "#7ee787" }} />
                 </span>
                 <span className="ml-2 truncate">identity.fetch</span>
               </div>
@@ -447,7 +358,7 @@ export function SystemIdentity() {
                   ref={bootRef}
                   className="mb-4 pb-4 border-b border-dashed border-border-strong space-y-1"
                 >
-                  {BOOT_LOG.map((entry, i) => (
+                  {bootLog.map((entry, i) => (
                     <div
                       key={i}
                       data-boot-line
@@ -463,7 +374,7 @@ export function SystemIdentity() {
 
                 {/* Spec rows */}
                 <div ref={specsRef} className="space-y-2.5">
-                  {SPECS.map((spec, i) => (
+                  {specs.map((spec, i) => (
                     <div
                       key={i}
                       data-spec-row
@@ -495,7 +406,7 @@ export function SystemIdentity() {
                     </span>
                   </span>
                   <span className="text-faint text-[10px] font-mono">
-                    uptime 2y+ · arch
+                    uptime 2y+ · laayoune
                   </span>
                 </div>
               </div>
@@ -508,7 +419,7 @@ export function SystemIdentity() {
           ref={statusRef}
           className="flex flex-wrap items-center gap-x-6 gap-y-3 mt-16 md:mt-24 pt-6 border-t border-border-strong"
         >
-          {TAGS.map((tag, i) => (
+          {tags.map((tag, i) => (
             <span
               key={i}
               className="t-label text-text-dim hover:text-accent transition-colors duration-300 cursor-default"

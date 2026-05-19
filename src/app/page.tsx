@@ -5,6 +5,7 @@ import { Workstation } from "@/components/sections/Workstation";
 import { Work } from "@/components/sections/Work";
 import { Process } from "@/components/sections/Process";
 import { Capabilities } from "@/components/sections/Capabilities";
+import { GithubStats } from "@/components/sections/GithubStats";
 import { Signal } from "@/components/sections/Signal";
 
 export default function Home() {
@@ -17,6 +18,7 @@ export default function Home() {
       <Work />
       <Process />
       <Capabilities />
+      <GithubStats />
       <Signal />
     </>
   );

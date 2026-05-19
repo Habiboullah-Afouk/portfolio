@@ -42,24 +42,32 @@ export function LoadingScreen() {
       style={{ opacity: progress >= 100 ? 0 : 1, pointerEvents: progress >= 100 ? "none" : "auto" }}
     >
       <div className="flex flex-col items-center gap-6">
+        {/* Top label */}
+        <div className="font-mono text-[10px] tracking-[0.22em] uppercase text-faint">
+          habiboullah@portfolio · booting
+        </div>
+
         {/* Percentage */}
         <div className="font-mono text-[48px] md:text-[72px] font-medium text-accent tabular leading-none tracking-[-0.04em]">
           {progress}%
         </div>
 
         {/* Status text */}
-        <div className="font-mono text-[11px] tracking-[0.18em] uppercase text-muted">
-          {progress < 30 && "Initializing kernel"}
-          {progress >= 30 && progress < 60 && "Loading modules"}
-          {progress >= 60 && progress < 90 && "Composing interface"}
-          {progress >= 90 && "Ready to explore"}
+        <div className="font-mono text-[11px] tracking-[0.18em] uppercase text-muted h-4">
+          {progress < 25 && "Mounting environment"}
+          {progress >= 25 && progress < 55 && "Loading stack · React · Laravel"}
+          {progress >= 55 && progress < 85 && "Composing interface"}
+          {progress >= 85 && "Ready · welcome"}
         </div>
 
         {/* Thin progress bar */}
-        <div className="w-[200px] h-[2px] bg-surface-2 rounded-full overflow-hidden">
+        <div className="w-[220px] h-[2px] bg-surface-2 rounded-full overflow-hidden">
           <div
             className="h-full bg-accent rounded-full transition-all duration-100"
-            style={{ width: `${progress}%` }}
+            style={{
+              width: `${progress}%`,
+              boxShadow: "0 0 12px rgba(125,211,252,0.5)",
+            }}
           />
         </div>
       </div>

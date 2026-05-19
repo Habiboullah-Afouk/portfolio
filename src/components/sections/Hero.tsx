@@ -5,18 +5,18 @@ import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { SITE } from "@/lib/content";
 
-/* ── floating terminal windows for cinematic depth ── */
+/* ── floating terminal HUD — fastfetch echo ── */
 const HUD_LINES = [
-  { l: "$ whoami", delay: 0 },
-  { l: "habib — systems engineer", delay: 0.15 },
-  { l: "$ uname -srn", delay: 0.3 },
-  { l: "Arch Linux · zen kernel · Hyprland", delay: 0.45 },
-  { l: "$ neofetch --stdout | head -5", delay: 0.6 },
-  { l: "OS      · Arch Linux x86_64", delay: 0.75 },
-  { l: "Host    · Framework 13", delay: 0.9 },
-  { l: "WM      · Hyprland 0.45", delay: 1.05 },
-  { l: "Shell   · zsh · starship", delay: 1.2 },
-  { l: "Editor  · neovim", delay: 1.35 },
+  { l: "$ whoami" },
+  { l: "habiboullah — full-stack dev" },
+  { l: "$ uname -srn" },
+  { l: "Linux · Fedora / Ubuntu" },
+  { l: "$ fastfetch --logo small" },
+  { l: "OS       · Linux x86_64" },
+  { l: "Editor   · VS Code · neovim" },
+  { l: "Runtime  · Node.js · PHP" },
+  { l: "Stack    · React · Laravel" },
+  { l: "Location · Laayoune, MA" },
 ];
 
 export function Hero() {
@@ -26,15 +26,18 @@ export function Hero() {
   const metaRef = useRef<HTMLDivElement>(null);
   const hudRef = useRef<HTMLDivElement>(null);
   const gridRef = useRef<HTMLDivElement>(null);
+  const glow1Ref = useRef<HTMLDivElement>(null);
+  const glow2Ref = useRef<HTMLDivElement>(null);
+  const wireRef = useRef<HTMLDivElement>(null);
 
   useGSAP(
     () => {
-      const ctx = gsap.context(() => {
+      gsap.context(() => {
         const tl = gsap.timeline({
           defaults: { ease: "power3.out" },
         });
 
-        // Cinematic zoom: grid scales in
+        /* Cinematic zoom: grid scales in */
         tl.fromTo(
           gridRef.current,
           { scale: 1.12, opacity: 0 },
@@ -42,7 +45,7 @@ export function Hero() {
           0
         );
 
-        // Terminal HUD lines type-in
+        /* Terminal HUD lines type-in */
         const hudLines = hudRef.current?.querySelectorAll("[data-hud-line]");
         if (hudLines) {
           tl.fromTo(
@@ -53,7 +56,7 @@ export function Hero() {
           );
         }
 
-        // Display heading split-text reveal
+        /* Display heading split-text reveal */
         const chars = h1Ref.current?.querySelectorAll("[data-char]");
         if (chars) {
           tl.fromTo(
@@ -71,7 +74,7 @@ export function Hero() {
           );
         }
 
-        // Subtitle fade
+        /* Subtitle fade */
         tl.fromTo(
           subRef.current,
           { opacity: 0, y: 20 },
@@ -79,19 +82,53 @@ export function Hero() {
           1.1
         );
 
-        // Meta labels
+        /* Meta labels */
         tl.fromTo(
           metaRef.current?.children || [],
           { opacity: 0, y: 12 },
           { opacity: 1, y: 0, stagger: 0.08, duration: 0.6 },
           1.3
         );
+
+        /* Wireframe drift */
+        if (wireRef.current) {
+          gsap.to(wireRef.current, {
+            rotate: 360,
+            duration: 120,
+            ease: "none",
+            repeat: -1,
+          });
+        }
+
+        /* Ambient glow breathing — layered, opposite phase for depth */
+        if (glow1Ref.current) {
+          gsap.to(glow1Ref.current, {
+            opacity: 0.7,
+            scale: 1.08,
+            duration: 6,
+            ease: "sine.inOut",
+            yoyo: true,
+            repeat: -1,
+          });
+        }
+        if (glow2Ref.current) {
+          gsap.to(glow2Ref.current, {
+            opacity: 0.8,
+            scale: 1.1,
+            duration: 5,
+            ease: "sine.inOut",
+            yoyo: true,
+            repeat: -1,
+            delay: 1.5,
+          });
+        }
       }, sectionRef);
     },
     { scope: sectionRef }
   );
 
-  const heading = "Systems Engineer";
+  const line1 = "Full-Stack";
+  const line2 = "Developer";
 
   return (
     <section
@@ -105,8 +142,9 @@ export function Hero() {
         aria-hidden="true"
       />
 
-      {/* Stronger ambient glow */}
+      {/* Stronger ambient glow — layered for depth */}
       <div
+        ref={glow1Ref}
         className="absolute top-1/4 -left-1/4 w-[80vw] h-[80vw] rounded-full blur-[120px]"
         style={{
           background:
@@ -115,6 +153,7 @@ export function Hero() {
         aria-hidden="true"
       />
       <div
+        ref={glow2Ref}
         className="absolute bottom-0 right-0 w-[60vw] h-[60vw] rounded-full blur-[100px]"
         style={{
           background:
@@ -123,8 +162,9 @@ export function Hero() {
         aria-hidden="true"
       />
 
-      {/* Floating geometric accent (isometric cube wireframe feel) */}
+      {/* Floating geometric accent — slow rotation */}
       <div
+        ref={wireRef}
         className="absolute top-1/3 right-[15%] w-32 h-32 md:w-48 md:h-48 opacity-[0.08]"
         aria-hidden="true"
       >
@@ -151,7 +191,7 @@ export function Hero() {
               <span className="dot" style={{ background: "#f7a13c" }} />
               <span className="dot" style={{ background: "#7ee787" }} />
             </span>
-            <span className="ml-2">bash</span>
+            <span className="ml-2">bash · system.init</span>
           </div>
           <div className="p-3 font-mono text-[10px] leading-[1.6]">
             {HUD_LINES.map((line, i) => (
@@ -173,11 +213,11 @@ export function Hero() {
           {/* Label */}
           <div
             ref={metaRef}
-            className="flex items-center gap-4 mb-6 md:mb-8"
+            className="flex items-center gap-4 mb-6 md:mb-8 flex-wrap"
           >
             <span className="t-label">{SITE.callsign}</span>
             <span className="h-px flex-1 max-w-[120px] bg-border-strong" />
-            <span className="t-label text-text-dim">Casablanca / Remote</span>
+            <span className="t-label text-text-dim">{SITE.location}</span>
             <span className="hidden md:inline-flex items-center gap-1.5 px-2 py-0.5 rounded-sm bg-surface border border-border-strong">
               <span
                 className="w-[6px] h-[6px] rounded-full inline-block"
@@ -191,14 +231,25 @@ export function Hero() {
 
           {/* Display heading with per-character spans */}
           <h1 ref={h1Ref} className="t-display text-text mb-6 md:mb-8">
-            {heading.split("").map((char, i) => (
+            {line1.split("").map((char, i) => (
               <span
-                key={i}
+                key={`l1-${i}`}
                 data-char
                 className="inline-block"
                 style={{ opacity: 0 }}
               >
-                {char === " " ? "\u00A0" : char}
+                {char}
+              </span>
+            ))}
+            <br />
+            {line2.split("").map((char, i) => (
+              <span
+                key={`l2-${i}`}
+                data-char
+                className="inline-block"
+                style={{ opacity: 0 }}
+              >
+                {char}
               </span>
             ))}
           </h1>
@@ -209,19 +260,19 @@ export function Hero() {
             className="t-lede max-w-xl"
             style={{ opacity: 0 }}
           >
-            Infrastructure that holds craft. Terminals tuned like instruments.
-            Systems designed for engineers who care about the seams.
+            Modern web, desktop, and mobile applications — built with care for
+            performance, design, and the problems they solve.
           </p>
         </div>
 
         {/* Bottom status bar */}
         <div className="flex items-center justify-between mt-12 md:mt-20 pt-6 border-t border-border-strong">
-          <div className="flex items-center gap-6">
+          <div className="flex items-center gap-6 flex-wrap">
             <span className="t-label">
-              Arch Linux · since 2018
+              {SITE.name}
             </span>
-            <span className="t-label hidden md:inline">Hyprland 0.45</span>
-            <span className="t-label hidden md:inline">neovim · helix</span>
+            <span className="t-label hidden md:inline">React · Laravel · Node.js</span>
+            <span className="t-label hidden lg:inline">Linux · Docker · Bash</span>
           </div>
           <div className="font-mono text-[10px] text-faint tracking-wider hidden md:block">
             SCROLL →

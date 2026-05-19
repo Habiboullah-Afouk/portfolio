@@ -182,12 +182,12 @@ export function Signal() {
       </div>
 
       {/* Footer bar */}
-      <div className="shell mt-16 md:mt-24 pt-6 border-t border-border-strong flex items-center justify-between">
+      <div className="shell mt-16 md:mt-24 pt-6 border-t border-border-strong flex items-center justify-between gap-4">
         <span className="t-caption text-faint">
-          {SITE.handle} — {new Date().getFullYear()}
+          {SITE.name} — {new Date().getFullYear()}
         </span>
         <span className="t-caption text-faint hidden md:inline">
-          Built with Next.js · Tailwind · GSAP · Arch Linux · Hyprland
+          Built with Next.js 16 · Tailwind v4 · GSAP · Linux
         </span>
       </div>
     </section>
