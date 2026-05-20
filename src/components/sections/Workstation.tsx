@@ -100,7 +100,7 @@ export function Workstation() {
     >
       <img
         ref={imageRef}
-        src="/images/latest one.png"
+        src="/images/new image of me.png"
         alt="Habiboullah Afouk"
         className="absolute inset-0 w-full h-full opacity-0"
         style={{
