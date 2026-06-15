@@ -227,6 +227,10 @@ export function Hero() {
                 AVAILABLE
               </span>
             </span>
+            <span className="hidden md:inline-flex items-center gap-3 rounded-full bg-bg-elevated/80 px-2 py-1 ring-1 ring-white/10 backdrop-blur-md">
+              <img src="/IMG-20260615-WA0034.jpg" alt="Habiboullah Afouk" className="h-6 w-6 rounded-full object-cover ring-1 ring-white/20" />
+              <span className="font-mono text-[10px] text-text-dim tracking-wide">@habiboullah</span>
+            </span>
           </div>
 
           {/* Display heading with per-character spans */}

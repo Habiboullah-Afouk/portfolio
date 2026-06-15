@@ -5,6 +5,7 @@ import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { SYSTEM_ID } from "@/lib/content";
+import { Avatar } from "@/components/ui/Avatar";
 
 if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
@@ -265,54 +266,56 @@ export function SystemIdentity() {
 
         {/* Two-column layout */}
         <div className="grid lg:grid-cols-12 gap-12 lg:gap-16 items-start">
-          {/* Left column — editorial identity (7 cols) */}
+          {/* Left column — editorial identity */}
           <div className="lg:col-span-7 space-y-8 md:space-y-10">
-            {/* Name — two lines, per-character spans for 3D reveal */}
-            <div style={{ perspective: "900px" }}>
-              <h2 className="text-text" style={{ lineHeight: 0.92 }}>
-                <span
-                  ref={nameLine1Ref}
-                  className="block"
-                  style={{
-                    fontSize: "clamp(2.8rem, 6.2vw, 6rem)",
-                    fontWeight: 500,
-                    letterSpacing: "-0.045em",
-                    textShadow: "0 0 70px rgba(125,211,252,0.07)",
-                  }}
-                >
-                  {firstName.split("").map((ch, i) => (
-                    <span
-                      key={i}
-                      data-char
-                      className="inline-block"
-                      style={{ opacity: 0, transformStyle: "preserve-3d" }}
-                    >
-                      {ch}
-                    </span>
-                  ))}
-                </span>
-                <span
-                  ref={nameLine2Ref}
-                  className="block mt-1"
-                  style={{
-                    fontSize: "clamp(2.8rem, 6.2vw, 6rem)",
-                    fontWeight: 500,
-                    letterSpacing: "-0.045em",
-                    textShadow: "0 0 70px rgba(125,211,252,0.07)",
-                  }}
-                >
-                  {lastName.split("").map((ch, i) => (
-                    <span
-                      key={i}
-                      data-char
-                      className="inline-block"
-                      style={{ opacity: 0, transformStyle: "preserve-3d" }}
-                    >
-                      {ch}
-                    </span>
-                  ))}
-                </span>
-              </h2>
+            <div className="flex items-center gap-5">
+              <Avatar src="/IMG-20260615-WA0034.jpg" alt="Habiboullah Afouk" className="h-16 w-16 md:h-20 md:w-20" />
+              <div style={{ perspective: "900px" }}>
+                <h2 className="text-text" style={{ lineHeight: 0.92 }}>
+                  <span
+                    ref={nameLine1Ref}
+                    className="block"
+                    style={{
+                      fontSize: "clamp(2.8rem, 6.2vw, 6rem)",
+                      fontWeight: 500,
+                      letterSpacing: "-0.045em",
+                      textShadow: "0 0 70px rgba(125,211,252,0.07)",
+                    }}
+                  >
+                    {firstName.split("").map((ch, i) => (
+                      <span
+                        key={i}
+                        data-char
+                        className="inline-block"
+                        style={{ opacity: 0, transformStyle: "preserve-3d" }}
+                      >
+                        {ch}
+                      </span>
+                    ))}
+                  </span>
+                  <span
+                    ref={nameLine2Ref}
+                    className="block mt-1"
+                    style={{
+                      fontSize: "clamp(2.8rem, 6.2vw, 6rem)",
+                      fontWeight: 500,
+                      letterSpacing: "-0.045em",
+                      textShadow: "0 0 70px rgba(125,211,252,0.07)",
+                    }}
+                  >
+                    {lastName.split("").map((ch, i) => (
+                      <span
+                        key={i}
+                        data-char
+                        className="inline-block"
+                        style={{ opacity: 0, transformStyle: "preserve-3d" }}
+                      >
+                        {ch}
+                      </span>
+                    ))}
+                  </span>
+                </h2>
+              </div>
             </div>
 
             {/* Role — typewriter + blinking caret */}
