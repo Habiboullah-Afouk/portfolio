@@ -175,7 +175,7 @@ export function Workstation() {
                 key={i}
                 data-ws-word
                 className={`inline-block mr-[0.25em] opacity-0 ${
-                  word === "operating" ? "text-accent-bright" : "text-text"
+                  word === "operating" ? "gradient-text" : "text-text"
                 }`}
                 style={{ transformStyle: "preserve-3d" }}
               >

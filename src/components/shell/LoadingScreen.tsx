@@ -1,8 +1,6 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { useGSAP } from "@gsap/react";
-import gsap from "gsap";
 
 export function LoadingScreen() {
   const [progress, setProgress] = useState(0);
@@ -48,7 +46,15 @@ export function LoadingScreen() {
         </div>
 
         {/* Percentage */}
-        <div className="font-mono text-[48px] md:text-[72px] font-medium text-accent tabular leading-none tracking-[-0.04em]">
+        <div
+          className="font-mono text-[48px] md:text-[72px] font-medium tabular leading-none tracking-[-0.04em]"
+          style={{
+            background: "linear-gradient(135deg, #7dd3fc 0%, #a78bfa 50%, #f472b6 100%)",
+            WebkitBackgroundClip: "text",
+            WebkitTextFillColor: "transparent",
+            backgroundClip: "text",
+          }}
+        >
           {progress}%
         </div>
 
@@ -60,13 +66,14 @@ export function LoadingScreen() {
           {progress >= 85 && "Ready · welcome"}
         </div>
 
-        {/* Thin progress bar */}
+        {/* Gradient progress bar */}
         <div className="w-[220px] h-[2px] bg-surface-2 rounded-full overflow-hidden">
           <div
-            className="h-full bg-accent rounded-full transition-all duration-100"
+            className="h-full rounded-full transition-all duration-100"
             style={{
               width: `${progress}%`,
-              boxShadow: "0 0 12px rgba(125,211,252,0.5)",
+              background: "linear-gradient(90deg, #7dd3fc, #a78bfa, #f472b6)",
+              boxShadow: "0 0 16px rgba(125,211,252,0.4), 0 0 32px rgba(167,139,250,0.2)",
             }}
           />
         </div>

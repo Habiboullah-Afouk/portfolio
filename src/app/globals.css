@@ -7,26 +7,30 @@
 
 :root {
   /* Surfaces (Arch + Hyprland inspired) */
-  --bg: #0a0b0b;
-  --bg-elevated: #121414;
-  --surface: #181a1b;
-  --surface-2: #1f2223;
-  --border: #1f2223;
-  --border-strong: #2a2d2e;
+  --bg: #07080a;
+  --bg-elevated: #0f1114;
+  --surface: #151820;
+  --surface-2: #1a1e28;
+  --border: #1c2030;
+  --border-strong: #262c3a;
   --border-glow: rgba(125, 211, 252, 0.16);
 
   /* Type */
-  --text: #e3e2e2;
-  --text-dim: #b6bcbf;
-  --muted: #8b949e;
-  --subtle: #5a6068;
-  --faint: #3a3f43;
+  --text: #eaedf2;
+  --text-dim: #b0b8c4;
+  --muted: #7a8599;
+  --subtle: #4d5770;
+  --faint: #333d52;
 
-  /* Cinematic accents */
+  /* Cinematic accents — richer palette */
   --accent: #7dd3fc;
   --accent-bright: #38bdf8;
   --accent-deep: #0c4a6e;
   --accent-glow: rgba(125, 211, 252, 0.22);
+
+  /* Premium gradient accents */
+  --gradient-accent: linear-gradient(135deg, #7dd3fc 0%, #a78bfa 50%, #f472b6 100%);
+  --gradient-subtle: linear-gradient(135deg, rgba(125,211,252,0.15) 0%, rgba(167,139,250,0.08) 50%, rgba(244,114,182,0.05) 100%);
 
   /* Terminal palette (status only) */
   --term-green: #7ee787;
@@ -66,9 +70,14 @@
   --color-term-red: var(--term-red);
   --color-term-magenta: var(--term-magenta);
 
+<<<<<<< HEAD
   --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
   --font-mono: var(--font-fira-code), ui-monospace, "JetBrains Mono", monospace;
   --font-display: var(--font-playfair), "Iowan Old Style", "Palatino Linotype", Georgia, serif;
+=======
+  --font-sans: var(--font-display), "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-mono), "JetBrains Mono", ui-monospace, monospace;
+>>>>>>> 6fa0a07 (new change in the font and added the small avatars)
 
   --container-shell: 1440px;
 }
@@ -125,20 +134,20 @@ body {
 /* Editorial display — Apple-style hero typography */
 .t-display {
   font-family: var(--font-sans);
-  font-weight: 500;
+  font-weight: 700;
   font-size: clamp(3.5rem, 8.6vw, 9.5rem);
-  line-height: 0.94;
-  letter-spacing: -0.045em;
-  text-shadow: 0 0 60px rgba(125, 211, 252, 0.08);
+  line-height: 0.92;
+  letter-spacing: -0.05em;
+  text-shadow: 0 0 80px rgba(125, 211, 252, 0.06);
 }
 
 /* Section heading — Stripe-style with optional italic emphasis */
 .t-heading {
   font-family: var(--font-sans);
-  font-weight: 500;
+  font-weight: 600;
   font-size: clamp(2.25rem, 4.6vw, 4.5rem);
   line-height: 1.02;
-  letter-spacing: -0.035em;
+  letter-spacing: -0.04em;
 }
 
 /* Editorial intro / pull quote */
@@ -198,13 +207,13 @@ body {
 /* Cinematic dotted blueprint grid (Hyprland feel) */
 .grid-blueprint {
   background-image:
-    linear-gradient(to right, rgba(125, 211, 252, 0.075) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(125, 211, 252, 0.075) 1px, transparent 1px);
+    linear-gradient(to right, rgba(125, 211, 252, 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(125, 211, 252, 0.05) 1px, transparent 1px);
   background-size: 64px 64px;
 }
 
 .grid-dot {
-  background-image: radial-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+  background-image: radial-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px);
   background-size: 24px 24px;
 }
 
@@ -256,9 +265,9 @@ body {
 /* Terminal window chrome (Hyprland-style) */
 .win {
   border: 1px solid var(--border-strong);
-  background: rgba(18, 20, 20, 0.86);
-  backdrop-filter: blur(14px) saturate(140%);
-  -webkit-backdrop-filter: blur(14px) saturate(140%);
+  background: rgba(15, 17, 20, 0.88);
+  backdrop-filter: blur(20px) saturate(150%);
+  -webkit-backdrop-filter: blur(20px) saturate(150%);
 }
 .win-header {
   display: flex;
@@ -270,7 +279,7 @@ body {
   font-size: 11px;
   letter-spacing: 0.08em;
   color: var(--muted);
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), transparent);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.025), transparent);
 }
 
 .dot-row {
@@ -329,6 +338,97 @@ body {
   vertical-align: -0.15em;
   margin-left: 2px;
   animation: blink 1.05s steps(1) infinite;
+}
+
+/* ============================================================
+   Premium glassmorphism card
+   ============================================================ */
+.glass-card {
+  background: rgba(15, 17, 20, 0.5);
+  border: 1px solid rgba(125, 211, 252, 0.08);
+  backdrop-filter: blur(24px) saturate(150%);
+  -webkit-backdrop-filter: blur(24px) saturate(150%);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.03) inset,
+    0 24px 48px -12px rgba(0, 0, 0, 0.4);
+}
+
+/* ============================================================
+   Premium gradient text helper
+   ============================================================ */
+.gradient-text {
+  background: var(--gradient-accent);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ============================================================
+   Draggable avatar styles
+   ============================================================ */
+.avatar-container {
+  cursor: grab;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: none;
+}
+.avatar-container:active {
+  cursor: grabbing;
+}
+
+.avatar-glow {
+  position: absolute;
+  inset: -24px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(125, 211, 252, 0.18) 0%,
+    rgba(167, 139, 250, 0.08) 40%,
+    transparent 70%
+  );
+  filter: blur(20px);
+  pointer-events: none;
+  z-index: -1;
+  animation: avatar-pulse 4s ease-in-out infinite alternate;
+}
+
+@keyframes avatar-pulse {
+  0% {
+    transform: scale(1);
+    opacity: 0.6;
+  }
+  100% {
+    transform: scale(1.15);
+    opacity: 1;
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+.avatar-float {
+  animation: float 5s ease-in-out infinite;
+}
+
+/* ============================================================
+   Section divider with gradient
+   ============================================================ */
+.section-divider {
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(125, 211, 252, 0.15) 20%,
+    rgba(167, 139, 250, 0.12) 50%,
+    rgba(244, 114, 182, 0.08) 80%,
+    transparent 100%
+  );
 }
 
 /* Respect reduced motion */

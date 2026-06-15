@@ -5,6 +5,7 @@ import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { PROCESS } from "@/lib/content";
+import { FloatingDecorAvatar } from "@/components/ui/FloatingDecorAvatar";
 
 if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
@@ -104,6 +105,16 @@ export function Process() {
       <div
         className="absolute inset-0 grid-dot opacity-40 pointer-events-none"
         aria-hidden="true"
+      />
+
+      {/* Decorative avatar — top right */}
+      <FloatingDecorAvatar
+        index={1}
+        top="5%"
+        right="5%"
+        size={320}
+        rotate={3}
+        flip
       />
 
       {/* Ambient glow — center */}

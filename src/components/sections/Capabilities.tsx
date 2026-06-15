@@ -5,6 +5,7 @@ import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { CAPABILITIES } from "@/lib/content";
+import { FloatingDecorAvatar } from "@/components/ui/FloatingDecorAvatar";
 
 if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
@@ -106,6 +107,15 @@ export function Capabilities() {
     >
       {/* Layered depth — background grid */}
       <div className="absolute inset-0 grid-dot opacity-50 pointer-events-none" aria-hidden="true" />
+
+      {/* Decorative avatar — top right empty space */}
+      <FloatingDecorAvatar
+        index={2}
+        top="0%"
+        right="5%"
+        size={340}
+        rotate={-2}
+      />
 
       <div className="shell relative z-10">
         {/* Label */}

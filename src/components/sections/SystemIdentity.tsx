@@ -5,6 +5,7 @@ import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { SYSTEM_ID } from "@/lib/content";
+import { FloatingDecorAvatar } from "@/components/ui/FloatingDecorAvatar";
 import { Avatar } from "@/components/ui/Avatar";
 
 if (typeof window !== "undefined") {
@@ -210,6 +211,15 @@ export function SystemIdentity() {
         ref={gridRef}
         className="absolute inset-0 grid-blueprint opacity-0"
         aria-hidden="true"
+      />
+
+      {/* Decorative avatar — bottom left */}
+      <FloatingDecorAvatar
+        index={0}
+        bottom="2%"
+        left="5%"
+        size={350}
+        rotate={-5}
       />
 
       {/* Cyan volumetric glow — left-center (animated breathing) */}

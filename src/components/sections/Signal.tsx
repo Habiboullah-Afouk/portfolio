@@ -5,6 +5,7 @@ import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { SIGNAL, SITE } from "@/lib/content";
+import { FloatingDecorAvatar } from "@/components/ui/FloatingDecorAvatar";
 
 if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
@@ -82,6 +83,16 @@ export function Signal() {
       ref={ref}
       className="relative py-[var(--shell-pad-y)]"
     >
+      {/* Decorative avatar — right side */}
+      <FloatingDecorAvatar
+        index={3}
+        top="10%"
+        right="10%"
+        size={300}
+        rotate={5}
+        flip
+      />
+
       <div className="shell">
         {/* Label */}
         <div className="flex items-center gap-4 mb-8">
@@ -92,7 +103,7 @@ export function Signal() {
         {/* Heading */}
         <h2
           data-signal-heading
-          className="t-heading max-w-4xl mb-6"
+          className="t-heading max-w-4xl mb-6 gradient-text"
           style={{ opacity: 0 }}
         >
           {SIGNAL.heading}
