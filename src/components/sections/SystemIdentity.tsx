@@ -218,7 +218,7 @@ export function SystemIdentity() {
         index={0}
         bottom="2%"
         left="5%"
-        size={350}
+        size={180}
         rotate={-5}
       />
 
@@ -279,7 +279,7 @@ export function SystemIdentity() {
           {/* Left column — editorial identity */}
           <div className="lg:col-span-7 space-y-8 md:space-y-10">
             <div className="flex items-center gap-5">
-              <Avatar src="/IMG-20260615-WA0034.jpg" alt="Habiboullah Afouk" className="h-16 w-16 md:h-20 md:w-20" />
+              <Avatar src="/IMG-20260615-WA0035.jpg" alt="Habiboullah Afouk" className="h-16 w-16 md:h-20 md:w-20" />
               <div style={{ perspective: "900px" }}>
                 <h2 className="text-text" style={{ lineHeight: 0.92 }}>
                   <span

@@ -40,7 +40,8 @@ interface FloatingDecorAvatarProps {
 /**
  * FloatingDecorAvatar — a ghosted, blurred 3D avatar placed in
  * section backgrounds as a premium decorative element.
- * Fades in on scroll and drifts slightly with a parallax effect.
+ * Styled with a soft feathered circular edge that fades into the
+ * dark background — spotlight/portal aesthetic.
  */
 export function FloatingDecorAvatar({
   index = 0,
@@ -48,8 +49,8 @@ export function FloatingDecorAvatar({
   bottom,
   left,
   right,
-  size = 280,
-  opacity = 0.06,
+  size = 160,
+  opacity = 0.035,
   rotate = 0,
   flip = false,
   className = "",
@@ -63,12 +64,13 @@ export function FloatingDecorAvatar({
       /* Fade in on scroll */
       gsap.fromTo(
         ref.current,
-        { opacity: 0, y: 30 },
+        { opacity: 0, y: 30, scale: 0.85 },
         {
           opacity: 1,
           y: 0,
+          scale: 1,
           duration: 1.5,
-          ease: "power2.out",
+          ease: "back.out(1.2)",
           scrollTrigger: {
             trigger: ref.current,
             start: "top 95%",
@@ -110,26 +112,31 @@ export function FloatingDecorAvatar({
         transform: `rotate(${rotate}deg) scaleX(${flip ? -1 : 1})`,
       }}
     >
-      {/* Soft glow behind the avatar */}
+      {/* Floating animation wrapper */}
       <div
-        className="absolute inset-0 rounded-full blur-[40px]"
-        style={{
-          background:
-            "radial-gradient(circle, rgba(125,211,252,0.08) 0%, transparent 70%)",
-        }}
-      />
-      <Image
-        src={src}
-        alt=""
-        fill
-        sizes={`${size}px`}
-        className="object-contain"
-        draggable={false}
-        style={{
-          opacity: 1,
-          filter: "drop-shadow(0 10px 30px rgba(0,0,0,0.4))",
-        }}
-      />
+        className="avatar-float w-full h-full"
+        style={{ animationDelay: `${index * 1.2}s` }}
+      >
+        {/* Simple, clean circular avatar container */}
+        <div
+          className="relative w-full h-full rounded-full overflow-hidden"
+          style={{
+            boxShadow: "0 8px 32px rgba(0,0,0,0.4)",
+          }}
+        >
+          <Image
+            src={src}
+            alt=""
+            fill
+            sizes={`${size}px`}
+            className="object-cover"
+            draggable={false}
+            style={{
+              filter: "brightness(0.95) saturate(1.05)",
+            }}
+          />
+        </div>
+      </div>
     </div>
   );
 }

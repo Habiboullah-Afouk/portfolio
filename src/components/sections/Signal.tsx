@@ -88,7 +88,7 @@ export function Signal() {
         index={3}
         top="10%"
         right="10%"
-        size={300}
+        size={160}
         rotate={5}
         flip
       />
@@ -138,6 +138,7 @@ export function Signal() {
             <div className="mt-4 flex flex-wrap items-center gap-3">
               <a
                 href={SIGNAL.cta.href}
+                suppressHydrationWarning
                 className="inline-flex items-center gap-2 px-4 py-2.5 rounded-md bg-accent/10 border border-accent/20 text-accent font-mono text-[12px] tracking-wider uppercase hover:bg-accent/20 transition-all duration-300"
               >
                 <svg
@@ -183,6 +184,7 @@ export function Signal() {
               target="_blank"
               rel="noopener noreferrer"
               data-signal-social
+              suppressHydrationWarning
               className="font-mono text-[11px] tracking-[0.1em] uppercase text-muted hover:text-accent transition-colors duration-300"
               style={{ opacity: 0 }}
             >

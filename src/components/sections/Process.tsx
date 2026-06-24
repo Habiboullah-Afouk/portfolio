@@ -112,7 +112,7 @@ export function Process() {
         index={1}
         top="5%"
         right="5%"
-        size={320}
+        size={170}
         rotate={3}
         flip
       />

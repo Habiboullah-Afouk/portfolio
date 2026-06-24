@@ -70,14 +70,8 @@
   --color-term-red: var(--term-red);
   --color-term-magenta: var(--term-magenta);
 
-<<<<<<< HEAD
-  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
-  --font-mono: var(--font-fira-code), ui-monospace, "JetBrains Mono", monospace;
-  --font-display: var(--font-playfair), "Iowan Old Style", "Palatino Linotype", Georgia, serif;
-=======
   --font-sans: var(--font-display), "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
   --font-mono: var(--font-mono), "JetBrains Mono", ui-monospace, monospace;
->>>>>>> 6fa0a07 (new change in the font and added the small avatars)
 
   --container-shell: 1440px;
 }
@@ -429,6 +423,73 @@ body {
     rgba(244, 114, 182, 0.08) 80%,
     transparent 100%
   );
+}
+
+/* ============================================================
+   Treasure Roadmap — Pirate Map Theme
+   ============================================================ */
+
+/* Animated dash movement on the trail path */
+@keyframes treasure-trail-march {
+  0% {
+    stroke-dashoffset: 0;
+  }
+  100% {
+    stroke-dashoffset: -40;
+  }
+}
+
+.treasure-trail-path {
+  animation: treasure-trail-march 3s linear infinite;
+}
+
+/* Node glow pulse */
+@keyframes treasure-node-pulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.5;
+  }
+  50% {
+    transform: scale(1.2);
+    opacity: 0.9;
+  }
+}
+
+.treasure-node-glow {
+  animation: treasure-node-pulse 4s ease-in-out infinite alternate;
+}
+
+
+
+
+/* Floating particles / stars */
+@keyframes treasure-particle-twinkle {
+  0%, 100% {
+    opacity: 0;
+    transform: scale(0.5) translateY(0);
+  }
+  30% {
+    opacity: 0.6;
+    transform: scale(1) translateY(-5px);
+  }
+  70% {
+    opacity: 0.4;
+    transform: scale(0.8) translateY(-10px);
+  }
+}
+
+.treasure-particle {
+  animation: treasure-particle-twinkle 4s ease-in-out infinite;
+}
+
+/* Node image hover */
+.roadmap-node-img {
+  transition: transform 0.4s var(--ease-out-cinema), box-shadow 0.4s ease;
+}
+
+.roadmap-node-img:hover {
+  transform: scale(1.1);
+  filter: drop-shadow(0 0 15px rgba(123, 97, 255, 0.3));
 }
 
 /* Respect reduced motion */

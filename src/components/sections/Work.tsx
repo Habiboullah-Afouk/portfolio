@@ -143,6 +143,7 @@ export function Work() {
               target="_blank"
               rel="noopener noreferrer"
               data-project-card
+              suppressHydrationWarning
               className="relative flex-shrink-0 w-[85vw] md:w-[48vw] lg:w-[38vw] frame-elevated rounded-lg p-6 md:p-8 flex flex-col justify-between group overflow-hidden"
               style={{ minHeight: "500px" }}
             >

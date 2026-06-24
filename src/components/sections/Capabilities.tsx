@@ -113,7 +113,7 @@ export function Capabilities() {
         index={2}
         top="0%"
         right="5%"
-        size={340}
+        size={170}
         rotate={-2}
       />
 

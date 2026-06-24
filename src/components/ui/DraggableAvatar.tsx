@@ -6,7 +6,8 @@ import Image from "next/image";
 /**
  * DraggableAvatar — A floating 3D avatar head that can be dragged around.
  * Uses native pointer events for smooth, spring-back dragging with momentum.
- * Inspired by the reference at abbasidi0095-dot.github.io/abba-portfolio
+ * Styled with soft feathered circular edge that fades into the dark
+ * background — spotlight/portal aesthetic.
  */
 export function DraggableAvatar() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -128,33 +129,13 @@ export function DraggableAvatar() {
           willChange: "transform",
         }}
       >
-        {/* Glow behind avatar */}
-        <div
-          className="avatar-glow"
-          style={{
-            opacity: isDragging ? 1 : isHovered ? 0.9 : 0.6,
-            transition: "opacity 0.4s ease",
-          }}
-        />
-
-        {/* Subtle ring */}
-        <div
-          className="absolute inset-[-4px] rounded-full"
-          style={{
-            background: isDragging
-              ? "linear-gradient(135deg, rgba(125,211,252,0.3), rgba(167,139,250,0.2), rgba(244,114,182,0.15))"
-              : "linear-gradient(135deg, rgba(125,211,252,0.12), rgba(167,139,250,0.08), transparent)",
-            transition: "background 0.4s ease",
-            filter: "blur(2px)",
-          }}
-        />
-
-        {/* Avatar image */}
+        {/* Avatar image - simple, clean circle */}
         <div
           className="relative overflow-hidden rounded-full"
           style={{
             width: "clamp(150px, 22vw, 220px)",
             height: "clamp(150px, 22vw, 220px)",
+            boxShadow: "0 8px 32px rgba(0,0,0,0.4)",
           }}
         >
           <Image
@@ -167,8 +148,8 @@ export function DraggableAvatar() {
             draggable={false}
             style={{
               filter: isDragging
-                ? "brightness(1.1) saturate(1.1)"
-                : "brightness(1.02) saturate(1.05)",
+                ? "brightness(1.08) saturate(1.08)"
+                : "brightness(0.98) saturate(1.05)",
               transition: "filter 0.3s ease",
             }}
           />
